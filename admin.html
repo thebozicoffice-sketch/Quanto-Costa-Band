@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="sr-RS">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — Quanto Costa Band (offline alat)</title>
+  <style>
+    body{margin:0;background:#0f172a;color:#e5e7eb;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif}
+    .wrap{max-width:900px;margin:0 auto;padding:20px}
+    .card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:20px;margin:16px 0}
+    input,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #334155;background:#0b1220;color:#e5e7eb}
+    .btn{background:#debb43;color:#111827;border:0;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    table{width:100%;border-collapse:collapse}
+    td,th{border-bottom:1px solid #1f2937;padding:8px}
+    .small{color:#94a3b8;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Admin — offline alat</h1>
+    <p class="small">Ovaj panel radi <b>bez servera</b>. Omogućava vam da uređujete listu rezervisanih datuma i preuzmete novi <code>booked.json</code>. Za online uređivanje je potrebno dodati backend (npr. Netlify CMS + Git, Supabase ili Firebase).</p>
+    <div class="card">
+      <h2>Rezervisani datumi</h2>
+      <div class="row">
+        <input id="date" type="date">
+        <button class="btn" id="add">Dodaj datum</button>
+        <button class="btn" id="download">Preuzmi booked.json</button>
+      </div>
+      <table id="tbl">
+        <thead><tr><th>Datum (ISO)</th><th>Akcija</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="small">Kako objaviti: zamenite fajl <code>/data/booked.json</code> ovim koji preuzmete, pa redeploy.</p>
+    </div>
+  </div>
+  <script>
+    let dates = [];
+    fetch('data/booked.json').then(r=>r.json()).then(j=>{dates = j.booked||[]; render();});
+    function render(){
+      const tb = document.querySelector('#tbl tbody'); tb.innerHTML='';
+      dates.sort();
+      dates.forEach((d,i)=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML = `<td>${d}</td><td><button data-i="${i}" class="btn">Obriši</button></td>`;
+        tb.appendChild(tr);
+      });
+      tb.querySelectorAll('button').forEach(b=>b.onclick=()=>{ dates.splice(parseInt(b.dataset.i),1); render(); });
+    }
+    document.getElementById('add').onclick=()=>{
+      const v = document.getElementById('date').value;
+      if(v && !dates.includes(v)){ dates.push(v); render(); }
+    };
+    document.getElementById('download').onclick=()=>{
+      const blob = new Blob([JSON.stringify({booked:dates}, null, 2)], {type:'application/json'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'booked.json'; a.click();
+      URL.revokeObjectURL(a.href);
+    };
+  </script>
+</body>
+</html>

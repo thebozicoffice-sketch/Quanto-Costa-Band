@@ -1,0 +1,55 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "assets/uploads"
+
+local_backend: true
+
+collections:
+  - name: "sadrzaj"
+    label: "Sadržaj sajta"
+    files:
+      - file: "data/booked.json"
+        label: "Kalendar — rezervacije"
+        name: "kalendar"
+        fields:
+          - label: "Rezervisani datumi"
+            name: "booked"
+            widget: list
+            field:
+              label: "Datum"
+              name: "datum"
+              widget: date
+              format: "YYYY-MM-DD"
+      - file: "index_copy.json"
+        label: "Tekstovi — O nama i kontakt"
+        name: "tekstovi"
+        fields:
+          - {label: "O nama (tekst)", name: "o_nama", widget: "text", default: "Višegodišnje iskustvo i repertoar, profesionalna oprema i zagarantovan vrhunski provod je ono što možete očekivati od nas."}
+          - {label: "Kontakt e‑mail", name: "email", widget: "string", default: "QuantoCostaBand@gmail.com"}
+          - {label: "Telefon", name: "telefon", widget: "string", default: "+381 66 557 1907"}
+
+  - name: "galerija"
+    label: "Galerija slika"
+    folder: "assets/gallery"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "webp"
+    media_library:
+      config:
+        multiple: true
+    fields:
+      - {label: "Slika", name: "image", widget: "image"}
+      - {label: "Alt tekst", name: "alt", widget: "string", required: false}
+
+  - name: "video"
+    label: "Video (MP4)"
+    folder: "assets/video"
+    create: true
+    slug: "{{slug}}"
+    extension: "mp4"
+    fields:
+      - {label: "Video fajl (MP4)", name: "file", widget: "file"}
+      - {label: "Poster (slika)", name: "poster", widget: "image", required: false}

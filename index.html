@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="sr-RS">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quanto Costa Band — Zvanični sajt</title>
+  <meta name="description" content="Quanto Costa Band — bend za svadbe, proslave i događaje. Snažan vokal, vrhunski muzičari, moderan i tradicionalan repertoar. Rezervišite termin!" />
+  <link rel="canonical" href="https://www.quanto-costa-band.rs/" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Quanto Costa Band — Zvanični sajt" />
+  <meta property="og:description" content="Bend za svadbe, proslave i događaje. Rezervacije i kontakt." />
+  <meta property="og:image" content="assets/og-cover.jpg" />
+  <meta property="og:locale" content="sr_RS" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quanto Costa Band" />
+  <meta name="twitter:description" content="Rezervacije i kontakt." />
+  <meta name="twitter:image" content="assets/og-cover.jpg" />
+  <style>
+    :root{--bg:#0b1220;--bg2:#0f172a;--fg:#e5e7eb;--muted:#94a3b8;--brand:#debb43;--card:#111827;--max:1100px;--ok:#16a34a;--bad:#ef4444}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--fg);background:linear-gradient(180deg,var(--bg),var(--bg2)) fixed}
+    a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
+    img{max-width:100%;height:auto;display:block}
+    header{position:sticky;top:0;background:rgba(11,18,32,.85);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid #1f2937;z-index:10}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    nav a{display:inline-block;padding:14px 10px;color:var(--fg)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .brand img{width:32px;height:32px;border-radius:50%}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:56px 0}
+    .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:.2em 0}
+    .muted{color:var(--muted)} .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .btn{background:var(--brand);color:#111827;border:0;padding:12px 18px;border-radius:999px;font-weight:700}
+    .btn.secondary{background:#1f2937;color:var(--fg);border:1px solid #2b3647}
+    section{padding:56px 0;border-top:1px solid #1f2937}
+    h2{font-size:clamp(22px,3.2vw,32px);margin:0 0 18px}
+    .card{background:var(--card);border:1px solid #1f2937;border-radius:16px;overflow:hidden}
+    .gallery img{aspect-ratio:1 / 1;object-fit:cover;border-radius:12px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+    .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+    .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+    form{display:grid;gap:10px}
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #334155;background:#0b1220;color:var(--fg)}
+    label{font-size:14px;color:var(--muted)} .small{font-size:12px;color:var(--muted)}
+    footer{padding:40px 0;border-top:1px solid #1f2937;color:var(--muted)}
+    .social a{display:inline-flex;align-items:center;gap:8px;padding:8px 10px}
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+    .calendar{background:#0b1220;border:1px solid #1f2937;border-radius:16px;padding:16px}
+    .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+    .dow,.day{padding:10px;border-radius:10px;text-align:center}
+    .dow{color:var(--muted);font-size:12px}
+    .day{background:#0f172a;border:1px solid #1f2937;position:relative}
+    .day.booked{border-color:var(--bad);color:#eab1b1}
+    .day.booked::after{content:'✕';position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;opacity:.85}
+    .day.free{border-color:#2a3a2a;color:#cde7cd}
+    .legend{display:flex;gap:14px;margin-top:10px;font-size:12px;color:var(--muted)}
+    .legend span{display:inline-flex;align-items:center;gap:6px}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot.free{background:var(--ok)} .dot.booked{background:var(--bad)}
+    @media (max-width:920px){.hero,.contact{grid-template-columns:1fr}}
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Quanto Costa Band",
+    "description": "Bend za svadbe, proslave i događaje u Srbiji.",
+    "url": "https://www.quanto-costa-band.rs/",
+    "image": "/assets/og-cover.jpg",
+    "sameAs": [
+      "https://www.instagram.com/quantocostaband",
+      "https://www.tiktok.com/@quantocostaband",
+      "https://www.youtube.com/@quantocostaband"
+    ],
+    "areaServed": "RS"
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="wrap row" role="navigation" aria-label="Glavna navigacija">
+      <div class="brand">
+        <img src="assets/logo.webp" alt="Quanto Costa Band logo">
+        <span>Quanto Costa Band</span>
+      </div>
+      <nav>
+        <a href="#o-nama">O nama</a>
+        <a href="#galerija">Galerija</a>
+        <a href="#video">Video</a>
+        <a href="#kalendar">Kalendar</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="pocetna">
+      <div>
+        <h1>Moderan bend za vaše <span style="color:var(--brand)">najlepše trenutke</span></h1>
+        <p class="muted">Top vokal, bogat repertoar i energija koja puni plesni podijum. Sviramo svadbe, rođendane, korporativne događaje i sve između.</p>
+        <div class="cta">
+          <a class="btn" href="#kontakt">Rezerviši termin</a>
+          <a class="btn secondary" href="#video">Pogledaj video</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets/hero.webp" alt="Quanto Costa Band na nastupu" loading="eager" width="1200" height="900" />
+      </div>
+    </section>
+
+    <section id="o-nama">
+      <h2>O nama</h2>
+      <p class="muted">Višegodišnje iskustvo i repertoar, profesionalna oprema i zagarantovan vrhunski provod je ono što možete očekivati od nas.</p>
+    </section>
+
+    <section id="galerija">
+      <h2>Galerija</h2>
+      <div class="gallery" aria-live="polite">
+        <img src="assets/gallery/g1.webp" alt="Nastup 1" loading="lazy" width="800" height="800">
+        <img src="assets/gallery/g2.webp" alt="Nastup 2" loading="lazy" width="800" height="800">
+        <img src="assets/gallery/g3.webp" alt="Publika uživa" loading="lazy" width="800" height="800">
+        <img src="assets/gallery/g4.webp" alt="Bina i rasveta" loading="lazy" width="800" height="800">
+        <img src="assets/gallery/g5.webp" alt="Sax solo" loading="lazy" width="800" height="800">
+        <img src="assets/gallery/g6.webp" alt="Vokal" loading="lazy" width="800" height="800">
+      </div>
+    </section>
+
+    <section id="video">
+      <h2>Video</h2>
+      <div class="video-grid">
+        <video controls preload="metadata" width="560" height="315" poster="/assets/og-cover.jpg">
+          <source src="assets/video/promo1.mp4" type="video/mp4">
+          Vaš pregledač ne podržava video tag.
+        </video>
+        <video controls preload="metadata" width="560" height="315" poster="/assets/og-cover.jpg">
+          <source src="assets/video/promo2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="small muted">Napomena: lokalni upload videa radi bez YouTube-a, ali imajte u vidu veličinu fajlova i bandwidth na hostingu.</p>
+    </section>
+
+    <section id="kalendar">
+      <h2>Raspoloživost benda</h2>
+      <div class="calendar">
+        <div class="cal-head">
+          <button class="btn secondary" id="prevM">←</button>
+          <div id="calTitle"></div>
+          <button class="btn secondary" id="nextM">→</button>
+        </div>
+        <div class="cal-grid" id="dow"></div>
+        <div class="cal-grid" id="cal"></div>
+        <div class="legend">
+          <span><span class="dot free"></span> Slobodan</span>
+          <span><span class="dot booked"></span> Rezervisano</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <h2>Kontakt</h2>
+      <div class="contact">
+        <!-- Fallback za bilo koji hosting: FormSubmit šalje na email; na Netlifyju možete vratiti data-netlify atribute -->
+        <form name="kontakt" action="https://formsubmit.co/QuantoCostaBand@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="Novi upit sa sajta — Quanto Costa Band">
+          <input type="hidden" name="_template" value="table">
+          <label for="name">Ime i prezime</label>
+          <input id="name" name="name" autocomplete="name" required />
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" autocomplete="email" required />
+          <label for="phone">Telefon</label>
+          <input id="phone" type="tel" name="phone" inputmode="tel" autocomplete="tel" />
+          <label for="date">Datum događaja</label>
+          <input id="date" type="date" name="date" />
+
+          <label for="eventType">Vrsta događaja</label>
+          <select id="eventType" name="vrsta_dogadjaja" required>
+            <option value="">— izaberi —</option>
+            <option>klub</option>
+            <option>kafić</option>
+            <option>svadba</option>
+            <option>rođendan</option>
+            <option>privatna proslava</option>
+          </select>
+
+          <label for="location">Lokacija</label>
+          <input id="location" name="lokacija" placeholder="npr. Beograd, Hotel XYZ, Bulevar..."/>
+
+          <fieldset style="border:1px solid #334155;border-radius:12px;padding:12px;">
+            <legend style="padding:0 8px;color:#94a3b8;font-size:14px">Vreme događaja</legend>
+            <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div>
+                <label for="start">Početak</label>
+                <input id="start" type="time" name="pocetak" required />
+              </div>
+              <div>
+                <label for="end">Kraj</label>
+                <input id="end" type="time" name="kraj" required />
+              </div>
+            </div>
+            <p id="trajanjeInfo" class="small" style="margin:8px 0 0;">Trajanje: —</p>
+            <input type="hidden" name="trajanje" id="trajanjeHidden" />
+          </fieldset>
+          <label for="message">Poruka</label>
+          <textarea id="message" name="message" rows="5" placeholder="Napišite nekoliko detalja o događaju…" required></textarea>
+          <button class="btn" type="submit">Pošalji upit</button>
+          <p class="small">Podaci se šalju na e‑mail: QuantoCostaBand@gmail.com</p>
+        </form>
+        <div class="card" style="padding:16px">
+          <h3 style="margin-top:0">Društvene mreže</h3>
+          <div class="social">
+            <a href="https://www.instagram.com/quantocostaband" aria-label="Instagram">Instagram</a>
+          </div>
+          <p class="small">Email: <a href="mailto:QuantoCostaBand@gmail.com">QuantoCostaBand@gmail.com</a><br>Telefon: <a href="tel:+381665571907">+381 66 557 1907</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap row">
+      <span>© <span id="y"></span> Quanto Costa Band</span>
+      <span class="small">Napravio MiliBot ✦ lagan, brz, SEO‑optimizovan</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Calendar
+    const dowNames = ['P','U','S','Č','P','S','N'];
+    const dowEl = document.getElementById('dow');
+    dowNames.forEach(d=>{ const e=document.createElement('div'); e.className='dow'; e.textContent=d; dowEl.appendChild(e); });
+    const calEl = document.getElementById('cal');
+    const titleEl = document.getElementById('calTitle');
+    let view = new Date(); view.setDate(1);
+
+    let booked = new Set();
+    fetch('data/booked.json')
+      .then(r=>r.json())
+      .then(d=>{
+        booked = new Set(d.booked || []);
+        render();
+      }).catch(()=>render());
+
+    function render(){
+      calEl.innerHTML='';
+      const y = view.getFullYear(), m = view.getMonth();
+      titleEl.textContent = view.toLocaleDateString('sr-RS', {month:'long', year:'numeric'});
+      const firstDow = (new Date(y, m, 1).getDay() || 7); // Monday=1..Sunday=7
+      const daysInMonth = new Date(y, m+1, 0).getDate();
+      for(let i=1;i<firstDow;i++){ const empty=document.createElement('div'); empty.className='day'; empty.style.visibility='hidden'; calEl.appendChild(empty); }
+      for(let d=1; d<=daysInMonth; d++){
+        const cell=document.createElement('div'); cell.className='day'; cell.textContent=d;
+        const iso = new Date(y, m, d).toISOString().slice(0,10);
+        if(booked.has(iso)){ cell.classList.add('booked'); }
+        else{ cell.classList.add('free'); }
+        calEl.appendChild(cell);
+      }
+    }
+    document.getElementById('prevM').onclick=()=>{ view.setMonth(view.getMonth()-1); render(); };
+    document.getElementById('nextM').onclick=()=>{ view.setMonth(view.getMonth()+1); render(); };
+  </script>
+
+  <script>
+    // Izračun trajanja događaja (obračunava i ako prelazi preko ponoći)
+    (function(){
+      const s = document.getElementById('start');
+      const e = document.getElementById('end');
+      const out = document.getElementById('trajanjeInfo');
+      const hidden = document.getElementById('trajanjeHidden');
+      function calc(){
+        if(!s || !e || !s.value || !e.value){ out && (out.textContent='Trajanje: —'); return; }
+        const [sh,sm] = s.value.split(':').map(Number);
+        const [eh,em] = e.value.split(':').map(Number);
+        let start = sh*60 + sm;
+        let end = eh*60 + em;
+        if(end < start){ end += 24*60; } // preko ponoći
+        const minutes = end - start;
+        const h = Math.floor(minutes/60);
+        const m = minutes % 60;
+        const txt = `Trajanje: ${h}h` + (m? ` ${m}min` : '');
+        out.textContent = txt;
+        hidden.value = h + 'h ' + (m? (m+'min') : '');
+      }
+      s && s.addEventListener('input', calc);
+      e && e.addEventListener('input', calc);
+      calc();
+    })();
+  </script>
+</body>
+</html>
