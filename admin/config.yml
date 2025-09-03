@@ -8,7 +8,7 @@ public_folder: "/assets/uploads"
 local_backend: true
 
 collections:
-  # 1) Jedan JSON fajl sa tekstovima i kontaktom
+  # 1) Tekstovi i kontakt info (čuva se u index_copy.json)
   - name: "sadrzaj"
     label: "Sadržaj sajta"
     files:
@@ -22,7 +22,7 @@ collections:
           - { label: "Telefon", name: "telefon", widget: "string", default: "+381 66 557 1907" }
           - { label: "Instagram URL", name: "instagram", widget: "string", default: "https://www.instagram.com/quantocostaband" }
 
-  # 2) Jedan JSON fajl sa listom datuma (stringovi YYYY-MM-DD)
+  # 2) Kalendar rezervacija (čuva se u data/booked.json)
   - name: "kalendar"
     label: "Kalendar — rezervacije"
     files:
@@ -40,25 +40,25 @@ collections:
               widget: "date"
               format: "YYYY-MM-DD"
 
-  # 3) Galerija kao folder kolekcija (svaka slika novi zapis)
+  # 3) Galerija slika (svaki unos je .md sa frontmatter-om)
   - name: "galerija"
     label: "Galerija slika"
     folder: "assets/gallery"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    extension: "webp"
+    format: "frontmatter"
     fields:
       - { label: "Slika", name: "image", widget: "image" }
       - { label: "Alt tekst", name: "alt", widget: "string", required: false }
 
-  # 4) Video kao folder kolekcija
+  # 4) Video (svaki unos je .md sa frontmatter-om)
   - name: "video"
     label: "Video"
     folder: "assets/video"
     create: true
     slug: "{{slug}}"
-    extension: "mp4"
+    format: "frontmatter"
     fields:
-      - { label: "Video (MP4)", name: "file", widget: "file" }
+      - { label: "Video (MP4)", name: "file", widget: "file", required: true }
       - { label: "Poster slika (jpg/webp)", name: "poster", widget: "image", required: false }
 
