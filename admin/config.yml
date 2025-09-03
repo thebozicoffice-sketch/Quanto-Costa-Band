@@ -5,34 +5,42 @@ backend:
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
-
 local_backend: true
 
 collections:
-  # 1) Glavni tekstovi sajta iz index_copy.json
+  # 1) Jedan JSON fajl sa tekstovima i kontaktom
   - name: "sadrzaj"
     label: "Sadržaj sajta"
-    file: "index_copy.json"
-    format: "json"
-    fields:
-      - { label: "O nama (tekst)", name: "o_nama", widget: "text", default: "Višegodišnje iskustvo i repertoar, profesionalna oprema i zagarantovan vrhunski provod je ono što možete očekivati od nas." }
-      - { label: "Kontakt e-mail", name: "email", widget: "string", default: "QuantoCostaBand@gmail.com" }
-      - { label: "Telefon", name: "telefon", widget: "string", default: "+381 66 557 1907" }
-      - { label: "Instagram URL", name: "instagram", widget: "string", default: "https://www.instagram.com/quantocostaband" }
+    files:
+      - label: "Tekstovi — O nama i kontakt"
+        name: "tekstovi"
+        file: "index_copy.json"
+        format: "json"
+        fields:
+          - { label: "O nama (tekst)", name: "o_nama", widget: "text", default: "Višegodišnje iskustvo i repertoar..." }
+          - { label: "Kontakt e-mail", name: "email", widget: "string", default: "QuantoCostaBand@gmail.com" }
+          - { label: "Telefon", name: "telefon", widget: "string", default: "+381 66 557 1907" }
+          - { label: "Instagram URL", name: "instagram", widget: "string", default: "https://www.instagram.com/quantocostaband" }
 
-  # 2) Kalendar rezervacija (lista datuma) iz data/booked.json
+  # 2) Jedan JSON fajl sa listom datuma (stringovi YYYY-MM-DD)
   - name: "kalendar"
     label: "Kalendar — rezervacije"
-    file: "data/booked.json"
-    format: "json"
-    fields:
+    files:
       - label: "Rezervisani datumi"
-        name: "booked"
-        widget: "list"
+        name: "bookovani"
+        file: "data/booked.json"
+        format: "json"
         fields:
-          - { label: "Datum", name: "datum", widget: "date", format: "YYYY-MM-DD" }
+          - label: "Rezervisani datumi"
+            name: "booked"
+            widget: "list"
+            field:
+              label: "Datum"
+              name: "date"
+              widget: "date"
+              format: "YYYY-MM-DD"
 
-  # 3) Galerija slika (svaki unos je .webp u assets/gallery)
+  # 3) Galerija kao folder kolekcija (svaka slika novi zapis)
   - name: "galerija"
     label: "Galerija slika"
     folder: "assets/gallery"
@@ -43,14 +51,14 @@ collections:
       - { label: "Slika", name: "image", widget: "image" }
       - { label: "Alt tekst", name: "alt", widget: "string", required: false }
 
-  # 4) Video fajlovi (MP4) u assets/video
+  # 4) Video kao folder kolekcija
   - name: "video"
-    label: "Video (MP4)"
+    label: "Video"
     folder: "assets/video"
     create: true
     slug: "{{slug}}"
     extension: "mp4"
     fields:
-      - { label: "Video fajl (MP4)", name: "file", widget: "file" }
-      - { label: "Poster (slika)", name: "poster", widget: "image", required: false }
+      - { label: "Video (MP4)", name: "file", widget: "file" }
+      - { label: "Poster slika (jpg/webp)", name: "poster", widget: "image", required: false }
 
