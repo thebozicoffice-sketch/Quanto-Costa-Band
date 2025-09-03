@@ -1,49 +1,81 @@
 <!doctype html>
 <html lang="sr-RS">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin — Quanto Costa Band</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin — Quanto Costa Band</title>
 
-  <!-- Netlify Identity (mora da bude uključeno u /admin da bi radio login/reset) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- 1) Netlify Identity widget (mora biti učitan na /admin) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- Ako do /admin dođemo sa #invite/#confirmation/#recovery tokenom,
-       postaraj se da se otvori modal i da refresh na login uspe. -->
-  <script>
-    (function () {
-      var h = window.location.hash || "";
-      var hasToken = /#(?:invite|confirmation|recovery)_token=/.test(h);
+    <!-- 2) Minimalni stil (ne dira se izgled sajta, samo /admin stranice) -->
+    <style>
+      :root { color-scheme: dark; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        background: #0f172a; /* tamna pozadina da se vidi da je admin */
+        color: #e5e7eb;
+        font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Helvetica Neue", Arial, sans-serif;
+      }
+      .wrap { min-height: 100%; display: grid; place-items: center; text-align: center; padding: 24px; }
+      h1 { margin: 0 0 8px; font-size: 22px; }
+      p.small { margin: 0; color: #94a3b8; font-size: 13px; }
+      noscript { display: block; max-width: 720px; margin: 24px auto; color: #fecaca; }
+    </style>
 
-      if (window.netlifyIdentity) {
-        // Kad se widget inicijalizuje: ako korisnik nije ulogovan,
-        // a stigao je sa tokenom, otvori modal; na login osveži stranicu.
-        window.netlifyIdentity.on('init', function (user) {
-          if (!user) {
-            if (hasToken) {
-              // Otvori Netlify modal (login/signup/reset) kad dođemo sa tokenom
-              try { window.netlifyIdentity.open(); } catch (e) {}
-            }
-            window.netlifyIdentity.on('login', function () {
+    <!-- 3) Logika: prepoznaj invite/confirmation/recovery tokene i otvori login -->
+    <script>
+      (function () {
+        try {
+          var hash = window.location.hash || "";
+
+          // Da li u URL-u postoji jedan od Netlify Identity tokena?
+          var hasIdentityToken = /#(?:invite|confirmation|recovery)_token=/.test(hash);
+
+          // Ako widget postoji, vežemo se na događaje.
+          if (window.netlifyIdentity) {
+            // Inicijalizacija
+            window.netlifyIdentity.on("init", function (user) {
+              // Ako NEMA korisnika i stigli smo sa tokenom -> otvori modal
+              if (!user && hasIdentityToken) {
+                try { window.netlifyIdentity.open("login"); } catch (e) {}
+              }
+
+              // Ako nema korisnika i NEMA tokena (direktan ulazak na /admin) -> otvori login
+              if (!user && !hasIdentityToken) {
+                try { window.netlifyIdentity.open("login"); } catch (e) {}
+              }
+            });
+
+            // Nakon uspešnog logovanja uvek osveži stranicu (da CMS dobije kredencijale)
+            window.netlifyIdentity.on("login", function () {
               window.location.reload();
             });
+
+            // Po odjavi (logout) vrati korisnika na početnu (menjaj po želji)
+            window.netlifyIdentity.on("logout", function () {
+              window.location.href = "/";
+            });
           }
-        });
-      }
-    })();
-  </script>
+        } catch (e) {
+          /* namerno ignorišemo da ne bismo prekidali rad CMS-a */
+        }
+      })();
+    </script>
+  </head>
 
-  <!-- (opcionalno) tvoj CSS, ne diram ništa ovde -->
-  <style>
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0f172a;color:#e2e8f0}
-    .loading{display:flex;align-items:center;justify-content:center;height:100vh}
-  </style>
-</head>
-<body>
-  <div class="loading">Učitavanje CMS panela…</div>
+  <body>
+    <div class="wrap">
+      <div>
+        <h1>Učitavanje CMS panela…</h1>
+        <p class="small">Ako se ništa ne dešava, proveri da li je uključen Netlify Identity i Git Gateway.</p>
+        <noscript>Za CMS je potreban JavaScript. Molimo omogućite JavaScript u pregledaču.</noscript>
+      </div>
+    </div>
 
-  <!-- Decap (Netlify) CMS – učitava /admin/config.yml automatski -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
+    <!-- 4) Decap (Netlify) CMS – automatski učitava /admin/config.yml -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </body>
 </html>
 
