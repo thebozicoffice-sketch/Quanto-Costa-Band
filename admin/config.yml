@@ -17,7 +17,7 @@ collections:
         file: "index_copy.json"
         format: "json"
         fields:
-          - { label: "O nama (tekst)", name: "o_nama", widget: "text", default: "Višegodišnje iskustvo i repertoar..." }
+          - { label: "O nama (tekst)", name: "o_nama", widget: "text", default: "Višegodišnje iskustvo i repertoar, profesionalna oprema i zagarantovan vrhunski provod je ono što možete očekivati od nas." }
           - { label: "Kontakt e-mail", name: "email", widget: "string", default: "QuantoCostaBand@gmail.com" }
           - { label: "Telefon", name: "telefon", widget: "string", default: "+381 66 557 1907" }
           - { label: "Instagram URL", name: "instagram", widget: "string", default: "https://www.instagram.com/quantocostaband" }
