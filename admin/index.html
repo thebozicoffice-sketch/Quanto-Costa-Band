@@ -3,37 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quanto Costa Band</title>
+  <title>Admin — Quanto Costa Band</title>
 
-  <!-- (Opcionalno) Ikonice/OG – ostavi ako ih već imaš u fajlu -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
-  <meta property="og:title" content="Quanto Costa Band" />
-  <meta property="og:image" content="assets/og-cover.jpg" />
-  <meta property="og:type" content="website" />
-
-  <!-- Tvoji CSS fajlovi/inline stilovi – ako već postoje u fajlu, ostavi ih ispod ovoga -->
-  <!-- Primer minimalnog reseta da ne diramo dizajn (slobodno izbriši ako već imaš CSS) -->
-  <style>
-    /* OVO JE SAMO BENIGNI RESET – ne menja tvoj dizajn, može i da se obriše ako već imaš CSS */
-    html,body { margin:0; padding:0; }
-  </style>
-
-  <!-- Netlify Identity widget (potrebno da bi se otvorio login/reset modal na /admin) -->
+  <!-- Netlify Identity (mora da bude uključeno u /admin da bi radio login/reset) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- AUTO preusmeravanje ako link iz mejla sadrži invite/confirmation/recovery_token -->
+  <!-- Ako do /admin dođemo sa #invite/#confirmation/#recovery tokenom,
+       postaraj se da se otvori modal i da refresh na login uspe. -->
   <script>
     (function () {
-      try {
-        var h = window.location.hash || "";
-        // Ako URL sadrži #invite_token / #confirmation_token / #recovery_token
-        // prebaci korisnika na /admin/ uz isti hash, da se tamo otvori Netlify modal
-        if (/#(?:invite|confirmation|recovery)_token=/.test(h)) {
-          window.location.replace("/admin/" + h);
-        }
-      } catch (e) { /* tiho ignoriši */ }
+      var h = window.location.hash || "";
+      var hasToken = /#(?:invite|confirmation|recovery)_token=/.test(h);
+
+      if (window.netlifyIdentity) {
+        // Kad se widget inicijalizuje: ako korisnik nije ulogovan,
+        // a stigao je sa tokenom, otvori modal; na login osveži stranicu.
+        window.netlifyIdentity.on('init', function (user) {
+          if (!user) {
+            if (hasToken) {
+              // Otvori Netlify modal (login/signup/reset) kad dođemo sa tokenom
+              try { window.netlifyIdentity.open(); } catch (e) {}
+            }
+            window.netlifyIdentity.on('login', function () {
+              window.location.reload();
+            });
+          }
+        });
+      }
     })();
   </script>
+
+  <!-- (opcionalno) tvoj CSS, ne diram ništa ovde -->
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0f172a;color:#e2e8f0}
+    .loading{display:flex;align-items:center;justify-content:center;height:100vh}
+  </style>
 </head>
 <body>
+  <div class="loading">Učitavanje CMS panela…</div>
+
+  <!-- Decap (Netlify) CMS – učitava /admin/config.yml automatski -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</body>
+</html>
+
