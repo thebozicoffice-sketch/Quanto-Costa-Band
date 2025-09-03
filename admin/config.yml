@@ -3,7 +3,8 @@ backend:
   branch: main
 
 media_folder: "assets/uploads"
-public_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
 
 local_backend: true
 
